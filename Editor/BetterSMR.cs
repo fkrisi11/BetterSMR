@@ -377,12 +377,21 @@ namespace CustomUnityTools
 
                 if (EditorGUI.EndChangeCheck())
                 {
+                    Undo.RegisterCompleteObjectUndo(this, "Change Highlight Settings");
+
                     foreach (var t in targets)
                     {
-                        var d = (t == target) ? m_LayoutData : LoadLayoutData(t);
+                        BlendShapeLayoutData d = (t == target) ? m_LayoutData : LoadLayoutData(t);
+
                         d.highlightColor = newColor;
                         d.showWireframe = newWire;
-                        if (t != target) SaveLayoutData(t, d);
+
+                        EditorUtility.SetDirty(t);
+
+                        if (t != target)
+                        {
+                            SaveLayoutData(t, d);
+                        }
                     }
 
                     m_LayoutData.highlightColor = newColor;
@@ -396,11 +405,19 @@ namespace CustomUnityTools
 
                 if (GUILayout.Button("Clear All Highlights"))
                 {
+                    Undo.RegisterCompleteObjectUndo(this, "Clear All Highlights");
+
                     foreach (var t in targets)
                     {
                         BlendShapeLayoutData d = (t == target) ? m_LayoutData : LoadLayoutData(t);
                         d.activeHighlights.Clear();
-                        if (t != target) SaveLayoutData(t, d);
+
+                        EditorUtility.SetDirty(t);
+
+                        if (t != target)
+                        {
+                            SaveLayoutData(t, d);
+                        }
                     }
 
                     m_LayoutData.activeHighlights.Clear();
