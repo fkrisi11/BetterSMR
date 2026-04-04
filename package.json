@@ -1,0 +1,19 @@
+{
+  "name": "com.tohruthedragon.bettersmr",
+  "displayName": "TohruTheDragon - Better SMR",
+  "version": "1.0.0",
+  "description": "Better Skinned Mesh Renderer Editor",
+  "url": "https://github.com/tohruthedragon/bettersmr",
+  "vpmDependencies": {},
+  "type": "tool",
+  "keywords": [
+     "custom editor",
+     "mesh",
+     "blendshape",
+     "skinned mesh",
+     "renderer"
+  ],
+  "author": {
+    "name": "TohruTheDragon"
+  }
+}
